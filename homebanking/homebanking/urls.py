@@ -17,10 +17,27 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Login.views import *
+<<<<<<< HEAD
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', RegisterView.as_view(),name='register'),
     path('login/', LoginView.as_view(),name='login'),
     path('logout/', LogoutView.as_view(),name='logout'),
     path('', HomeView.as_view(),name='home'),
+=======
+from Movimientos.views import *
+from Prestamos.views import *
+from Clientes.views import *
+from Cuentas.views import *
+from Tarjetas.views import *
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',Login,name='Login'),
+    path('cliente/',Cliente,name='Cliente'),
+    path('cuentas/',Cuentas,name = 'Cuentas'),
+    path('prestamos/',Prestamos,name = 'Prestamos'),
+    path('movimientos/',Movimiento,name = 'Movimientos'),
+    path('tarjetas/',Tarjetas, name = 'tarjetas')
+>>>>>>> e055a2cc45ec4b57e017123eabef0c82b12b44fd
 ]

@@ -6,6 +6,9 @@ from django.views.generic  import TemplateView
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+def Login(request):
+    return render(request,'login.html')
+
 class RegisterView(View):
     def get(self,request):
         form=UserCreationForm
