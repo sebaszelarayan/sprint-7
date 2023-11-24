@@ -30,7 +30,6 @@ urlpatterns = [
     path('prestamos/',Prestamos,name = 'Prestamos'),
     path('movimientos/',Movimiento,name = 'Movimientos'),
     path('tarjetas/',Tarjetas, name = 'tarjetas'),
-    path('admin/', admin.site.urls),
     path('register/', RegisterView.as_view(),name='register'),
     path('login/', LoginView.as_view(),name='login'),
     path('logout/', LogoutView.as_view(),name='logout'),
