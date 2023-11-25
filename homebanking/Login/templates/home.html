@@ -50,6 +50,7 @@
     </div>
     </nav>
     {% if user.is_authenticated %}
+
     <h1 class="text-center">Bienvenido a HomeBanking</h1>
     
         {% else %}
@@ -59,7 +60,6 @@
         {% block content%}
     
         {%endblock%}
-    </main>
 </body>
 
 </html>
