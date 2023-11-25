@@ -1,22 +1,22 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
-from django.contrib.auth import login,logout
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import CustomUserCreationForm
+from django.contrib.auth import login,logout,authenticate
 from django.views import View
 from django.views.generic  import TemplateView
-from django.contrib.auth.decorators import login_required
 # Create your views here.
-class RegisterView(View):
-    def get(self,request):
-        form=UserCreationForm
-        return render(request,'register.html',{'form':form})
-    
-    def post(self,request):
-        form=UserCreationForm(request.POST)
-        if form.is_valid():
-            user=form.save()
-            login(request,user)
+def Register(request):
+    data = {
+        'form': CustomUserCreationForm()
+    }
+    if request.method == 'POST':
+        user_creation_form = CustomUserCreationForm(data=request.POST)
+        if user_creation_form.is_valid():
+            user_creation_form.save()
+            user = authenticate(username=user_creation_form.cleaned_data['username'], password= user_creation_form.cleaned_data['password1'])
+            login(request, user)
             return redirect('home')
-        return render(request,'register.html',{'form':form})
+    return render(request,'register.html',data)
     
 class LoginView(View):
     def get(self,request):
@@ -34,7 +34,7 @@ class LoginView(View):
 class LogoutView(View):
     def get(self,request):
         logout(request)
-        return redirect('login')
+        return redirect('home')
 
 class HomeView(TemplateView):
     template_name='home.html'
