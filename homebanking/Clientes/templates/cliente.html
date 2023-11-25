@@ -5,9 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cliente</title>
 </head>
-    <a href="/">Cerrar sesion</a>
-    <a href="/movimientos">Movimientos</a>
-    <a href="/prestamos">Prestamos</a>
-    <a href="/tarjetas">Tarjetas</a>
-    <a href="/cuentas">Cuentas</a>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="/cliente/1">Informacion del cliente</a></li>
+            <li><a href="/movimientos">Movimientos</a></li>
+            <li><a href="/prestamos">Prestamos</a></li>
+            <li><a href="/tarjetas/1">Tarjetas</a></li>
+            <li><a href="/cuentas">Cuentas</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+    <ul>
+        <li>Nombre: {{cliente.customer_name}}</li>
+        <li>Apellido: {{cliente.customer_surname}}</li>
+        <li>DNI: {{cliente.customer_dni}}</li>
+        <li>Fecha de nacimineto: {{cliente.dob}}</li>
+    </ul>
+</body>
+
 </html>

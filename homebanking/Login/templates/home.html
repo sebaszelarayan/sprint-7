@@ -7,9 +7,19 @@
 </head>
 <body>
     {% if user.is_authenticated %}
+    <nav>
+        <ul>
+            <li><a href="/cliente/1">Informacion del cliente</a></li>
+            <li><a href="/movimientos">Movimientos</a></li>
+            <li><a href="/prestamos">Prestamos</a></li>
+            <li><a href="/tarjetas/1">Tarjetas</a></li>
+            <li><a href="/cuentas">Cuentas</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
     <h2>Bienvenido a Maze bank</h2>
-    <p>Hola {{user.username}}</p>
-    <p><a href="{% url 'logout' %}">Cerrar Sesión</a></p>
+    <p>Hola, {{user.username}}</p>
     {% else %}
     <p><a href="{% url 'login' %}">Iniciar Sesión</a></p>
     <p><a href="{% url 'register'%}">Registrar</a></p>

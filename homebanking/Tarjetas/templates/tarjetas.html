@@ -6,6 +6,34 @@
     <title>Tarjetas</title>
 </head>
 <body>
-    
+    <nav>
+        <ul>
+            <li><a href="/cliente/1">Informacion del cliente</a></li>
+            <li><a href="/movimientos">Movimientos</a></li>
+            <li><a href="/prestamos">Prestamos</a></li>
+            <li><a href="/tarjeta/1">Tarjetas</a></li>
+            <li><a href="/cuentas">Cuentas</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+    <h2>Tarjetas de {{user.username}}</h2>
+    <ul>
+        {%for tarjeta in tarjetas%}
+            {% if tarjeta.customer_id == cliente.customer_id %}
+                {% if tarjeta.tarjeta_id == 1%}
+                <li>Marca de tarjeta: VISA</li>
+                {% elif tarjeta.tarjeta_id == 2%}
+                <li>Marca de tarjeta: MASTER</li>
+                {% else %}
+                <li>Marca de tarjeta: AMEX</li>
+                {% endif %}
+                <li>Numero de tarjeta: {{tarjeta.numero}}</li>
+                <li>tipo de tarjeta: {{tarjeta.tipo_tarjeta}}</li>
+                <li>fecha de otorgamiento: {{tarjeta.fecha_de_otorgamiento}}</li>
+                <li>fecha de expiracion: {{tarjeta.fecha_de_expiracion}}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 </body>
 </html>
+
