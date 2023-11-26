@@ -1,22 +1,15 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm
-from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth import login,logout
 from django.views import View
-from django.views.generic  import TemplateView
+from django.views.generic  import TemplateView ,CreateView
+from django.urls import reverse_lazy
 # Create your views here.
-def Register(request):
-    data = {
-        'form': CustomUserCreationForm()
-    }
-    if request.method == 'POST':
-        user_creation_form = CustomUserCreationForm(data=request.POST)
-        if user_creation_form.is_valid():
-            user_creation_form.save()
-            user = authenticate(username=user_creation_form.cleaned_data['username'], password= user_creation_form.cleaned_data['password1'])
-            login(request, user)
-            return redirect('home')
-    return render(request,'register.html',data)
+class SignupView(CreateView):
+    form_class = CustomUserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "register.html"
     
 class LoginView(View):
     def get(self,request):

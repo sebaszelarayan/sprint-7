@@ -17,7 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Login.views import *
-from Login.views import Register
 from Movimientos.views import *
 from Prestamos.views import *
 from Clientes.views import *
@@ -31,7 +30,7 @@ urlpatterns = [
     path('prestamos/',Prestamos,name = 'Prestamos'),
     path('movimientos/',Movimiento,name = 'Movimientos'),
     path('tarjetas/',Tarjetas, name = 'tarjetas'),
-    path('register/',Register,name='register'),
+    path('register/',SignupView.as_view(),name='register'),
     path('accounts/login/', LoginView.as_view(),name='login'),
     path('tarjetas/<int:customer_id>/',Tarjetas, name = 'tarjetas'),
     path('login/', LoginView.as_view(),name='login'),
