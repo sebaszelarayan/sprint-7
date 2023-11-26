@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuentas</title>
-</head>
-<body>
+{% extends 'home.html'%}
+{% block title%}Cuenta{% endblock %}
+{% block h1%}Cuenta{% endblock %}
+{% block content%}
     <nav>
         <ul>
             <li><a href="/cliente/1">Informacion del cliente</a></li>
@@ -16,5 +12,4 @@
             <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
         </ul>
     </nav>
-</body>
-</html>
+{%endblock%}

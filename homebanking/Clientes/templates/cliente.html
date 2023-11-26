@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cliente</title>
-</head>
-
-<body>
+{% extends 'home.html'%}
+{% block title%}Cliente{% endblock %}
+{% block h1%}Cliente{% endblock %}
+{% block content%}
     <nav>
         <ul>
             <li><a href="/cliente/1">Informacion del cliente</a></li>
@@ -23,7 +18,4 @@
         <li>DNI: {{cliente.customer_dni}}</li>
         <li>Fecha de nacimineto: {{cliente.dob}}</li>
     </ul>
-</body>
-
-
-</html>
+    {%endblock%}
