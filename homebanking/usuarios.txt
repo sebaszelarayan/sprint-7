@@ -1,0 +1,13 @@
+Usuario: HarrisonH
+Contra: usuario1
+---------------
+Usuario: LeeM
+Contra: usuario1
+---------------
+Usuario: MosesG
+Contra:  usuario1
+---------------
+ADMIN: admin
+Contra: 91218
+---------------
+Para crear usuario devemos usar el Register, luego con el admin ir a la tabla clientes y seleccionar el usuario creado para ver los datos

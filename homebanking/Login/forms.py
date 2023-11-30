@@ -8,7 +8,7 @@ class CustomUserCreationForm(UserCreationForm):
         "username",
         "first_name",
         "last_name",
-        "customer_DNI",
+        "customer_DNI_id",
         )
 
 class CustomUserChangeForm(UserChangeForm):
@@ -18,5 +18,5 @@ class CustomUserChangeForm(UserChangeForm):
         "username",
         "first_name",
         "last_name",
-        "customer_DNI",
+        "customer_DNI_id",
         )

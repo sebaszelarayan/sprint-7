@@ -25,15 +25,13 @@ from Tarjetas.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cliente/<int:customer_id>/',Clientes,name='Cliente'),
+    path('cliente/',ClientesView,name='Cliente'),
     path('cuentas/',Cuentas,name = 'Cuentas'),
     path('prestamos/',Prestamos,name = 'Prestamos'),
     path('movimientos/',Movimiento,name = 'Movimientos'),
     path('tarjetas/',Tarjetas, name = 'tarjetas'),
     path('register/',SignupView.as_view(),name='register'),
     path('accounts/login/', LoginView.as_view(),name='login'),
-    path('tarjetas/<int:customer_id>/',Tarjetas, name = 'tarjetas'),
-    path('login/', LoginView.as_view(),name='login'),
     path('logout/', LogoutView.as_view(),name='logout'),
     path('', HomeView.as_view(),name='home'),
 

@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect,get_object_or_404
-from django.contrib import messages
+from django.shortcuts import render 
 from django.contrib.auth.decorators import login_required
-from .models import Cliente
-
+from .models import *
 # Create your views here.
 @login_required
-def Clientes(request,customer_id):
-    cliente = get_object_or_404(Cliente,pk=customer_id)
-    return render(request,'cliente.html',{'cliente':cliente})
+def ClientesView(request):
+    direcciones = Direcciones.objects.all()
+    suscursal = Sucursal.objects.all()
+    tipo_cliente = TipoCliente.objects.all()
+    cliente = Cliente
+    return render(request,'cliente.html',{'direcciones':direcciones,'cliente':cliente,'sucursal':suscursal,'tipo_cliente':tipo_cliente})
 

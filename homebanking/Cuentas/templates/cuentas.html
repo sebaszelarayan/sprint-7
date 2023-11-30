@@ -2,14 +2,33 @@
 {% block title%}Cuenta{% endblock %}
 {% block h1%}Cuenta{% endblock %}
 {% block content%}
-    <nav>
-        <ul>
-            <li><a href="/cliente/1">Informacion del cliente</a></li>
-            <li><a href="/movimientos">Movimientos</a></li>
-            <li><a href="/prestamos">Prestamos</a></li>
-            <li><a href="/tarjetas/1">Tarjetas</a></li>
-            <li><a href="/cuentas">Cuentas</a></li>
-            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
-        </ul>
-    </nav>
+<main class="container pt-2">
+    <article class=" row row-cols-1 row-cols-md-2 g-4  col-9 listado pt-2">
+        {% if user.cliente.customer_name == user.first_name %}
+        {%for cuenta in cuenta %}
+        {% if cuenta.customer_id == user.cliente.customer_id %}
+        <section class="col-5 mt-2 mb-4">
+            <section class="card border-secondary ">
+            <ul class="list-group list-group-flush" >
+                <li class="list-group-item border-secondary text-center"><h4>Cuenta de {{user.username}} </h4></li>
+                {%for tipo_cuenta in tipo_cuenta %}
+                    {% if cuenta.tipo_cuenta_id == tipo_cuenta.tipo_cuenta_id %}
+                        <li class="list-group-item border-secondary text-dark">Tipo de Cuenta: {{tipo_cuenta.cuenta_name}}</li>
+                        <li class="list-group-item border-secondary text-dark">Moneda: {{tipo_cuenta.moneda}}</li>
+                    {% endif %}
+                {% endfor %}
+                <li class="list-group-item border-secondary text-dark ">Balance: {{cuenta.balance}}</li>
+                <li class="list-group-item border-secondary text-dark">Iban: {{cuenta.iban}}</li>
+            </ul>
+        </section>
+    </section>
+            
+            {% endif %}
+        {% endfor %}
+        {% else %}
+                        <li class="list-group-item border-secondary text-danger">El Usuario <strong>{{user.username}}</strong> No tiene Cuentas registradas</li>
+                    {% endif %}
+
+    </article>
+</main>
 {%endblock%}

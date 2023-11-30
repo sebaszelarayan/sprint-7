@@ -37,19 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'AuditoriaCuenta',
     'Clientes',
     'Cuentas',
     'Tarjetas',
     'Movimientos',
     'Prestamos',
     'Login',
-    'Direcciones',
-    'TipoCliente',
-    'TipoCuenta',
-    'MarcaTarjeta',
-    'Empleado',
-    
 ]
 
 MIDDLEWARE = [

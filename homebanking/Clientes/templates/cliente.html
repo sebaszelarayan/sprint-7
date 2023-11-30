@@ -2,20 +2,101 @@
 {% block title%}Cliente{% endblock %}
 {% block h1%}Cliente{% endblock %}
 {% block content%}
-    <nav>
-        <ul>
-            <li><a href="/cliente/1">Informacion del cliente</a></li>
-            <li><a href="/movimientos">Movimientos</a></li>
-            <li><a href="/prestamos">Prestamos</a></li>
-            <li><a href="/tarjetas/1">Tarjetas</a></li>
-            <li><a href="/cuentas">Cuentas</a></li>
-            <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
-        </ul>
-    </nav>
-    <ul>
-        <li>Nombre: {{cliente.customer_name}}</li>
-        <li>Apellido: {{cliente.customer_surname}}</li>
-        <li>DNI: {{cliente.customer_dni}}</li>
-        <li>Fecha de nacimineto: {{cliente.dob}}</li>
-    </ul>
-    {%endblock%}
+<main class="container pt-2">
+    <article class="row row-cols-1 row-cols-md-2 g-4 col-18 listado pt-2">
+        <section class="col-5 mt-2 mb-4">
+            <section class="card border-secondary ">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item border-secondary text-center text-dark">
+                        <h4>Datos del Cliente</h4>
+                    </li>
+                    {% if user.cliente.customer_name == user.first_name %}
+                        <li class="list-group-item border-secondary text-dark">Nombre: {{user.cliente.customer_name}}</li>
+                        <li class="list-group-item border-secondary text-dark">Apellido: {{user.cliente.customer_surname}}
+                        </li>
+                        <li class="list-group-item border-secondary text-dark">DNI: {{user.customer_DNI_id}}
+                        </li>
+                        <li class="list-group-item border-secondary text-dark">Fecha de Nacimineto: {{user.cliente.dob}}</li>
+                    {% else %}
+                        <li class="list-group-item border-secondary text-danger">El Usuario <strong>{{user.username}}</strong> No tiene datos registrados</li>
+                    {% endif %}
+                </ul>
+            </section>
+        </section>
+        <section class="col-5 mt-2 mb-4">
+            <section class="card border-secondary ">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item border-secondary text-center text-dark">
+                        <h4>Direccion del Cliente</h4>
+                    </li>
+                    {% if user.cliente.customer_name == user.first_name %}
+                        {%for direcciones in direcciones%}
+                            {% if direcciones.direccion_id == user.cliente.direccion_id %}
+                                <li class="list-group-item border-secondary text-dark">Calle: {{direcciones.calle}}</li>
+                                <li class="list-group-item border-secondary text-dark">Numero: {{direcciones.numero}}</li>
+                                <li class="list-group-item border-secondary text-dark">Ciudad: {{direcciones.ciudad}}
+                                </li>
+                                <li class="list-group-item border-secondary text-dark">Provincia: {{direcciones.provincia}}</li>
+                                <li class="list-group-item border-secondary text-dark">Pais: {{direcciones.pais}}</li>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                    <li class="list-group-item border-secondary text-danger">El Usuario <strong>{{user.username}}</strong> No tiene datos registrados</li>
+                    {% endif %}
+                </ul>
+            </section>
+        </section>
+        <section class="col-5 mt-2 mb-4">
+            <section class="card border-secondary ">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item border-secondary text-center text-dark">
+                        <h4>Sucursal del Cliente</h4>
+                    </li>
+                    {% if user.cliente.customer_name == user.first_name %}
+                        {%for sucursal in sucursal%}
+                            {% if sucursal.branch_id == user.cliente.branch_id %}
+                                <li class="list-group-item border-secondary text-dark">Nombre: {{sucursal.branch_name}}</li>
+                                <li class="list-group-item border-secondary text-dark">Numero Sucursal: {{sucursal.branch_number}}
+                                </li>
+                                {%for direcciones in direcciones%}
+                                    {% if direcciones.direccion_id == sucursal.direccion_id %}
+                                        <li class="list-group-item border-secondary text-dark">Calle: {{direcciones.calle}}</li>
+                                        <li class="list-group-item border-secondary text-dark">Numero: {{direcciones.numero}}</li>
+                                        <li class="list-group-item border-secondary text-dark">Ciudad: {{direcciones.ciudad}}
+                                        </li>
+                                        <li class="list-group-item border-secondary text-dark">Provincia: {{direcciones.provincia}}</li>
+                                        <li class="list-group-item border-secondary text-dark">Pais: {{direcciones.pais}}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <li class="list-group-item border-secondary text-danger">El Usuario <strong>{{user.username}}</strong> No tiene datos registrados</li>
+                    {% endif %}
+                </ul>
+                
+            </section>
+        </section>
+    </section>
+    <section class="col-5 mt-2 mb-4">
+        <section class="card border-secondary ">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item border-secondary text-center text-dark">
+                    <h4>Tipo del Cliente</h4>
+                </li>
+                {% if user.cliente.customer_name == user.first_name %}
+                    {%for tipo_cliente in tipo_cliente%}
+                        {% if tipo_cliente.tipo_cliente_id == user.cliente.tipo_cliente_id %}
+                            <li class="list-group-item border-secondary text-center">{{tipo_cliente.tipo_name}}</li>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <li class="list-group-item border-secondary text-danger">El Usuario <strong>{{user.username}}</strong> No tiene datos registrados</li>
+                {% endif %}
+            </ul>
+            
+        </section>
+    </section>
+    </article>
+</main>
+{%endblock%}

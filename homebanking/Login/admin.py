@@ -13,12 +13,12 @@ class CustomUserAdmin(UserAdmin):
         "username",
         "first_name",
         "last_name",
-        "customer_DNI",
+        "customer_DNI_id",
         "email",
         "is_staff",
     ]
-    fieldsets = UserAdmin.fieldsets + ((None, {"fields": ("customer_DNI",)}),)
-    add_fieldsets = UserAdmin.add_fieldsets + ((None, {"fields": ("customer_DNI",)}),)
+    fieldsets = UserAdmin.fieldsets + ((None, {"fields": ("customer_DNI_id",)}),)
+    add_fieldsets = UserAdmin.add_fieldsets + ((None, {"fields": ("customer_DNI_id",)}),)
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
