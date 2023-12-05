@@ -1,11 +1,12 @@
-from django.shortcuts import render, redirect,get_object_or_404
-from django.contrib import messages
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Prestamo
+from .models import *
+from Clientes.models import Cliente
 
 # Create your views here.
 
 @login_required
 def Prestamos(request):
-    # Verificar si el usuario está autenticado
-    return render(request,'prestamos.html')
+    prestamos = Prestamo.objects.all()
+    cliente = Cliente
+    return render(request,'prestamos.html',{'prestamos':prestamos,'cliente':cliente})
